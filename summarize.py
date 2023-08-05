@@ -3,6 +3,7 @@ from prepare import prepare_llm, prepare_retrieval_QA, parse_arguments
 from ingest import load_single_document
 from langchain.document_loaders import WebBaseLoader
 from langchain.chains.summarize import load_summarize_chain
+import time
 
 def load_web_document(path):
     loader = WebBaseLoader(path)
@@ -10,6 +11,7 @@ def load_web_document(path):
 
 def main():
     print("summarizing...")
+    start = time.time()
     llm = prepare_llm()
 
     # doc_path = "/Users/melo/github/private-original-gpt/source_documents/Multiple.txt"
@@ -23,6 +25,8 @@ def main():
 
     chain = load_summarize_chain(llm, chain_type="stuff")
     chain.run(docs)
+    end = time.time()
+    print(f"\n> Answer (took {round(end - start, 2)} s.):")
 
 if __name__ == "__main__":
     main()
