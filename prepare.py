@@ -23,6 +23,7 @@ model_path = os.environ.get('MODEL_PATH')
 model_n_ctx = os.environ.get('MODEL_N_CTX')
 model_n_batch = int(os.environ.get('MODEL_N_BATCH',8))
 target_source_chunks = int(os.environ.get('TARGET_SOURCE_CHUNKS',4))
+temperature = 0.8
 
 def prepare_llm():
     args = parse_arguments()
@@ -31,7 +32,7 @@ def prepare_llm():
     # Prepare the LLM
     match model_type:
         case "LlamaCpp":
-            llm = LlamaCpp(model_path=model_path, n_gpu_layers=n_gpu_layers, f16_kv=True, n_ctx=N_CTX, max_tokens=model_n_ctx, n_batch=model_n_batch, callbacks=callbacks, verbose=False, stream=False)
+            llm = LlamaCpp(model_path=model_path, n_gpu_layers=n_gpu_layers, f16_kv=True, n_ctx=N_CTX, max_tokens=model_n_ctx, n_batch=model_n_batch, callbacks=callbacks, verbose=False, stream=False, temperature=temperature)
         case "GPT4All":
             llm = GPT4All(model=model_path, max_tokens=model_n_ctx, backend='gptj', n_batch=model_n_batch, callbacks=callbacks, verbose=False)
     return llm

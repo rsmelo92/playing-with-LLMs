@@ -14,8 +14,8 @@ def main():
     start = time.time()
     llm = prepare_llm()
 
-    # doc_path = "/Users/melo/github/private-original-gpt/source_documents/Multiple.txt"
-    doc_path = "/Users/melo/github/private-original-gpt/source_documents/USS.txt"
+    doc_path = "/Users/melo/github/private-original-gpt/source_documents/Multiple.txt"
+    # doc_path = "/Users/melo/github/private-original-gpt/source_documents/USS.txt"
     # doc_path = "https://engineering.atspotify.com/2023/05/multiple-layers-of-abstraction-in-design-systems/"
 
     if validators.url(doc_path) is True:
