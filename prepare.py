@@ -34,7 +34,7 @@ def prepare_llm():
         case "LlamaCpp":
             llm = LlamaCpp(model_path=model_path, n_gpu_layers=n_gpu_layers, f16_kv=True, n_ctx=N_CTX, max_tokens=model_n_ctx, n_batch=model_n_batch, callbacks=callbacks, verbose=False, stream=False, temperature=temperature)
         case "GPT4All":
-            llm = GPT4All(model=model_path, max_tokens=model_n_ctx, backend='gptj', n_batch=model_n_batch, callbacks=callbacks, verbose=False)
+            llm = GPT4All(model=model_path, max_tokens=model_n_ctx, backend='gptj', n_batch=model_n_batch, callbacks=callbacks, verbose=False, temp=temperature)
     return llm
 
 def prepare_retrieval_QA(llm):
